@@ -26,31 +26,45 @@ function computerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    if (playerSelection === computerSelection) {
-      return "It's a tie!";
-    }
-    if (playerSelection === "rock") {
-      if (computerSelection === "scissors") {
-        return "You win! Rock beats scissors.";
-      } else {
-        return "You lose! Paper beats rock.";
-      }
-    }
-    if (playerSelection === "paper") {
-      if (computerSelection === "rock") {
-        return "You win! Paper beats rock.";
-      } else {
-        return "You lose! Scissors beats paper.";
-      }
-    }
-    if (playerSelection === "scissors") {
-      if (computerSelection === "paper") {
-        return "You win! Scissors beats paper.";
-      } else {
-        return "You lose! Rock beats scissors.";
-      }
-    }
+
+  let computerSelection = computerChoice();
+    
+  let result = determineWinner(playerSelection, computerSelection);
+
+  if(result === "win") {
+    playerWins++;
+  }else if (result === "lose") {
+    computerWins++;
+  }
+
+  // Display the result in the results div
+  document.getElementById("result").innerHTML = 
+  `Player chose ${playerSelection}, Computer chose ${computerSelection}. Result: ${result}<br>` +
+  `Score: Player ${playerWins}, Computer ${computerWins}`;
+
+  // Check if a player has reached 5 points
+  if (playerWins === 5) {
+    document.getElementById("result").innerHTML = "Player wins the game!";
+  } else if (computerWins === 5) {
+    document.getElementById("result").innerHTML = "Computer wins the game!";
+  }
+}
+
+
+// Define the determineWinner function
+function determineWinner(playerSelection, computerSelection) {
+  
+  if (playerSelection === computerSelection) {
+    return "draw";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    return "win";
+  } else {
+    return "lose";
+  }
 }
   
 
