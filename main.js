@@ -25,7 +25,7 @@ function computerChoice() {
     return choices[randomIndex];
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
 
   let computerSelection = computerChoice();
     
@@ -38,9 +38,9 @@ function playRound(playerSelection, computerSelection) {
   }
 
   // Display the result in the results div
-  document.getElementById("result").innerHTML = 
+  document.getElementById("result").addEventListener("click", () => innerHTML = 
   `Player chose ${playerSelection}, Computer chose ${computerSelection}. Result: ${result}<br>` +
-  `Score: Player ${playerWins}, Computer ${computerWins}`;
+  `Score: Player ${playerWins}, Computer ${computerWins}`);
 
   // Check if a player has reached 5 points
   if (playerWins === 5) {
@@ -53,7 +53,7 @@ function playRound(playerSelection, computerSelection) {
 
 // Define the determineWinner function
 function determineWinner(playerSelection, computerSelection) {
-  
+
   if (playerSelection === computerSelection) {
     return "draw";
   } else if (

@@ -8,7 +8,76 @@
 </head>
 <body>
 
-    <section class="container">
+    <!-- Create three buttons for each selection -->
+<button id="rock">Rock</button>
+<button id="paper">Paper</button>
+<button id="scissors">Scissors</button>
+
+<!-- Add a div for displaying results -->
+<div id="results"></div>
+
+<script>
+  // Define variables for tracking the score
+  let playerScore = 0;
+  let computerScore = 0;
+
+  // Add event listeners to the buttons
+  document.getElementById("rock").addEventListener("click", () => playRound("rock"));
+  document.getElementById("paper").addEventListener("click", () => playRound("paper"));
+  document.getElementById("scissors").addEventListener("click", () => playRound("scissors"));
+
+  // Define the playRound function
+  function playRound(playerSelection) {
+    // Generate the computer's selection
+    let computerSelection = getComputerSelection();
+
+    // Determine the winner
+    let result = determineWinner(playerSelection, computerSelection);
+
+    // Update the score
+    if (result === "win") {
+      playerScore++;
+    } else if (result === "lose") {
+      computerScore++;
+    }
+
+    // Display the result in the results div
+    document.getElementById("results").innerHTML = 
+      `Player chose ${playerSelection}, Computer chose ${computerSelection}. Result: ${result}<br>` +
+      `Score: Player ${playerScore}, Computer ${computerScore}`;
+
+    // Check if a player has reached 5 points
+    if (playerScore === 5) {
+      document.getElementById("results").innerHTML = "Player wins the game!";
+    } else if (computerScore === 5) {
+      document.getElementById("results").innerHTML = "Computer wins the game!";
+    }
+  }
+
+  // Define the getComputerSelection function
+  function getComputerSelection() {
+    let options = ["rock", "paper", "scissors"];
+    let randomIndex = Math.floor(Math.random() * options.length);
+    return options[randomIndex];
+  }
+
+  // Define the determineWinner function
+  function determineWinner(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+      return "draw";
+    } else if (
+      (playerSelection === "rock" && computerSelection === "scissors") ||
+      (playerSelection === "paper" && computerSelection === "rock") ||
+      (playerSelection === "scissors" && computerSelection === "paper")
+    ) {
+      return "win";
+    } else {
+      return "lose";
+    }
+  }
+</script>
+
+    <!-- <section class="container">
         <div class="button-controls">
             <button class="rps-buttons" id="rock">ROCK</button>
             <button class="rps-buttons" id="paper">PAPER</button>
@@ -22,6 +91,6 @@
         </div>
     </section>
     
-    <script src="main.js"></script>
+    <script src="main.js"></script> -->
 </body>
 </html>
