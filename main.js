@@ -38,9 +38,14 @@ function playRound(playerSelection) {
   }
 
   // Display the result in the results div
-  document.getElementById("result").addEventListener("click", () => innerHTML = 
-  `Player chose ${playerSelection}, Computer chose ${computerSelection}. Result: ${result}<br>` +
-  `Score: Player ${playerWins}, Computer ${computerWins}`);
+  // document.getElementById("result").addEventListener("click", () => innerHTML = 
+  // `Player chose ${playerSelection}, Computer chose ${computerSelection}. Result: ${result}<br>` +
+  // `Score: Player ${playerWins}, Computer ${computerWins}`);
+
+   // Display the result in the results div
+   document.getElementById("result").innerHTML = 
+   `Player chose ${playerSelection}, Computer chose ${computerSelection}. Result: ${result}<br>` +
+   `Score: Player ${playerWins}, Computer ${computerWins}`;
 
   // Check if a player has reached 5 points
   if (playerWins === 5) {
